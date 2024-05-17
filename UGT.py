@@ -99,6 +99,14 @@ if submit_button:
     # Round each column of y_pred separately to different decimal places
     y_predicted_rounded[:, 0] = np.round(y_pred[:, 0], 2)  # Round "Crude Rate" to 1 decimal place
     y_predicted_rounded[:, 1] = np.round(y_pred[:, 1], 6)  # Round "Survival Rate" to 9 decimal places
-    st.write('Crude Mortality Rate:', y_predicted_rounded[:,0])
-    st.write('Survival Rate:', y_predicted_rounded[:,1])
+    # Get the rounded values
+    crude_rate = y_predicted_rounded[0, 0]
+    survival_rate = y_predicted_rounded[0, 1]
+
+    # Format the survival rate with percentage
+    formatted_survival_rate = f'{survival_rate * 100:.4f}%'
+
+    # Display results in Streamlit
+    st.markdown(f'**Crude Mortality Rate:** Number of deaths per 100,000 individuals in a given year\n\n**{crude_rate}**')
+    st.markdown(f'**Survival Rate:** Likelihood of the Survival\n\n**{formatted_survival_rate}**')
   
